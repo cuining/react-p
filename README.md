@@ -1,7 +1,6 @@
 # react-p
 Run react apps in your browser!
 [Try it out!](https://cuining.github.io/demo/react/react-p/)
-// TODO: Live Demo、ErrorMessage
 
 # Development
 ## Run
