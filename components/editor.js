@@ -12,7 +12,7 @@ export default class Editor extends Component {
 
   componentDidMount() {
     const { onChange, readOnly, value } = this.props
-    console.log(options);
+    
     requireAddons()
     const Codemirror = require('codemirror')
     this.cm = Codemirror(this.editor, { ...options, readOnly })

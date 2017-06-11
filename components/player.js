@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 export default class WorkSpace extends Component {
   componentWillReceiveProps(nextProps) {
+    debugger
     if (nextProps.value !== this.props.value) {
       this.renderPlayer()
     }
@@ -17,8 +18,11 @@ export default class WorkSpace extends Component {
   }
 
   renderPlayer() {
-    const code = transform(this.props.value, { presets: ['es2015', 'react'] }).code
-    new Function(code).call(null, React)
+    try {
+      const code = transform(this.props.value, { presets: ['es2015', 'react'] }).code
+      new Function(code).call(null, React)
+    } catch (e) {
+    }
   }
 
   require = (name) => {
