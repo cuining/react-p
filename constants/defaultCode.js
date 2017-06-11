@@ -3,8 +3,13 @@ import { render } from 'react-dom';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="demo">
         Welcome to React!
+        <style>{\`
+          .demo {
+            color: red
+          }
+        \`}</style>
       </div>
     )
   }

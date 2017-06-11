@@ -1,0 +1,8 @@
+main.reactp {
+  display: flex;
+  height: 100vh;
+}
+
+.CodeMirror {
+  height: 100vh;
+}
