@@ -10,7 +10,7 @@ export default class Editor extends Component {
 
     requireAddons()
     const Codemirror = require('codemirror')
-    this.cm = Codemirror(this.editor, options)
+    this.cm = Codemirror(this.editor, Object.assign(options, { readOnly }))
     this.cm.on('changes', cm => { onChange && onChange(cm.getValue()) })
     this.cm.setValue(value)
   }
