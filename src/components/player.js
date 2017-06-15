@@ -28,7 +28,7 @@ export default class WorkSpace extends Component {
     this.renderPlayer()
   }
 
-  require = (name) => {
+  require(name) {
     if (name === 'react') {
       return React
     }

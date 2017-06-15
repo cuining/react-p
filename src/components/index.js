@@ -9,13 +9,13 @@ export default class WorkSpace extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      code: defaultCode
+      code: this.props.value
     }
+    this.handleCodeChange = this.handleCodeChange.bind(this)
   }
 
-  handleCodeChange = code => {
+  handleCodeChange(code) {
     this.setState({ code })
-    console.log(code);
   }
 
   render() {
@@ -27,4 +27,12 @@ export default class WorkSpace extends Component {
       </main>
     )
   }
+}
+
+WorkSpace.propTypes = {
+  value: PropTypes.string
+}
+
+WorkSpace.defaultProps = {
+  value: defaultCode
 }

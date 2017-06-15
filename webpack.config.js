@@ -1,33 +1,33 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack');
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
+
 module.exports = {
-  entry: './index',
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist/'),
-    chunkFilename: '[chunkhash:12].js',
-    filename: '[chunkhash:12].js'
+    path: path.join(__dirname, 'dist'),
+    publicPath: 'dist/',
+    filename: 'react-p.js',
+    sourceMapFilename: 'react-p.map',
+    library: 'ReactP',
+    libraryTarget: 'umd'
   },
-  plugins: [
-    new ExtractTextPlugin({ filename: '[chunkhash:12].css' }),
-    new HtmlWebpackPlugin({ template: './index.html' }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: {
-        keep_fnames: true
-      },
-      output: {
-        comments: false
-      }
-    })
-  ],
   resolve: {
     extensions: ['.js']
   },
+  externals: {
+    'react': {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react'
+    }
+  },
+  plugins: [
+    new ExtractTextPlugin({ filename: 'index.css' }),
+  ],
   module: {
     rules: [
       {

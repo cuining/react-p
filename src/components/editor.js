@@ -5,25 +5,24 @@ import 'codemirror/lib/codemirror.css'
 import '../styles/react.css'
 
 export default class Editor extends Component {
-  static propsTypes = {
-    onChange: PropTypes.func,
-    value: PropTypes.string
-  }
-
   componentDidMount() {
     const { onChange, readOnly, value } = this.props
-    
+
     requireAddons()
     const Codemirror = require('codemirror')
-    this.cm = Codemirror(this.editor, { ...options, readOnly })
+    this.cm = Codemirror(this.editor, options)
     this.cm.on('changes', cm => { onChange && onChange(cm.getValue()) })
     this.cm.setValue(value)
   }
 
   render() {
-    const { readOnly } = this.props
     return (
       <div className="editor" ref={ref => this.editor = ref} />
     )
   }
+}
+
+Editor.propsTypes = {
+  onChange: PropTypes.func,
+  value: PropTypes.string
 }
