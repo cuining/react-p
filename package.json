@@ -2,10 +2,10 @@
   "name": "react-p",
   "version": "1.1.1",
   "description": "a live react playground",
-  "main": "dist/react-p.js",
+  "main": "lib/react-p.js",
   "scripts": {
     "build": "webpack",
-    "prepublish": "rm -rf dist && webpack"
+    "prepublish": "rm -rf lib && webpack"
   },
   "repository": {
     "type": "git",

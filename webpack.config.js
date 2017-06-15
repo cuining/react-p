@@ -7,8 +7,8 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.join(__dirname, 'dist'),
-    publicPath: 'dist/',
+    path: path.join(__dirname, 'lib'),
+    publicPath: 'lib/',
     filename: 'react-p.js',
     sourceMapFilename: 'react-p.map',
     library: 'ReactP',
