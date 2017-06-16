@@ -1,5 +1,5 @@
-export default `import React, { Component } from 'react';
-import { render } from 'react-dom';
+export default `import React, { Component } from 'react'
+
 class App extends Component {
   render() {
     return (
@@ -14,6 +14,4 @@ class App extends Component {
     )
   }
 }
-
-render(<App />, document.getElementById('player'));
 `

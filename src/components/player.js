@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom'
 import { transform } from 'babel-standalone'
 import PropTypes from 'prop-types'
 
+const prefix = `
+  import { render } from 'react-dom'
+  `
+const suffix = `
+  render(<App />, document.getElementById('player'))
+  `
+
 export default class WorkSpace extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
@@ -18,9 +25,11 @@ export default class WorkSpace extends Component {
 
   renderPlayer() {
     try {
-      const code = transform(this.props.value, { presets: ['es2015', 'react'] })
-        .code
-      ReactDOM.render(new Function(code).call(null, React), this.player)
+      const code = transform(prefix + this.props.value + suffix, {
+        presets: ['es2015', 'react']
+      }).code
+      console.log(code)
+      new Function(code).call(null, React)
     } catch (e) {}
   }
 
@@ -40,7 +49,7 @@ export default class WorkSpace extends Component {
   render() {
     const { playerPanel } = this.props
     return playerPanel
-      ? React.cloneElement(playerPanel, { ref: ref => (this.player = ref) })
-      : <div className="player" id="player" ref={ref => (this.player = ref)} />
+      ? React.cloneElement(playerPanel, { id: 'player' })
+      : <div className="player" id="player" />
   }
 }
