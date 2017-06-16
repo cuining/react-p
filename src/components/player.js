@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom'
 import { transform } from 'babel-standalone'
 import PropTypes from 'prop-types'
 
+const playerId = `player-${parseInt(Math.random() * 1e9)}`
+
 const prefix = `
   import { render } from 'react-dom'
   `
 const suffix = `
-  render(<App />, document.getElementById('player'))
+  render(<App />, document.getElementById('${playerId}'))
   `
 
 export default class WorkSpace extends Component {
@@ -48,8 +50,9 @@ export default class WorkSpace extends Component {
 
   render() {
     const { playerPanel } = this.props
+
     return playerPanel
-      ? React.cloneElement(playerPanel, { id: 'player' })
-      : <div className="player" id="player" />
+      ? React.cloneElement(playerPanel, { id: playerId })
+      : <div className="player" id={playerId} />
   }
 }
