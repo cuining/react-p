@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
-import { transform } from 'babel-standalone';
+import ReactDOM from 'react-dom'
+import { transform } from 'babel-standalone'
 import PropTypes from 'prop-types'
 
 export default class WorkSpace extends Component {
@@ -18,10 +18,10 @@ export default class WorkSpace extends Component {
 
   renderPlayer() {
     try {
-      const code = transform(this.props.value, { presets: ['es2015', 'react'] }).code
+      const code = transform(this.props.value, { presets: ['es2015', 'react'] })
+        .code
       ReactDOM.render(new Function(code).call(null, React), this.player)
-    } catch (e) {
-    }
+    } catch (e) {}
   }
 
   componentDidUpdate() {
@@ -38,8 +38,9 @@ export default class WorkSpace extends Component {
   }
 
   render() {
-    return (
-      <div className="player" id="player" ref={ref => this.player = ref} />
-    )
+    const { playerPanel } = this.props
+    return playerPanel
+      ? React.cloneElement(playerPanel, { ref: ref => (this.player = ref) })
+      : <div className="player" id="player" ref={ref => (this.player = ref)} />
   }
 }

@@ -20,11 +20,11 @@ export default class WorkSpace extends Component {
 
   render() {
     const { code } = this.state
-    const { readOnly } = this.props
+    const { readOnly, editorPanel, playerPanel } = this.props
     return (
       <main className="reactp">
-        <Editor readOnly={readOnly} value={code} onChange={this.handleCodeChange}></Editor>
-        <Player value={code}></Player>
+        <Editor readOnly={readOnly} value={code} editorPanel={editorPanel} onChange={this.handleCodeChange}></Editor>
+        <Player value={code} playerPanel={playerPanel}></Player>
       </main>
     )
   }
@@ -32,7 +32,9 @@ export default class WorkSpace extends Component {
 
 WorkSpace.propTypes = {
   value: PropTypes.string,
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
+  editorPanel: PropTypes.element,
+  playerPanel: PropTypes.element,
 }
 
 WorkSpace.defaultProps = {

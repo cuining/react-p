@@ -11,14 +11,17 @@ export default class Editor extends Component {
     requireAddons()
     const Codemirror = require('codemirror')
     this.cm = Codemirror(this.editor, Object.assign(options, { readOnly }))
-    this.cm.on('changes', cm => { onChange && onChange(cm.getValue()) })
+    this.cm.on('changes', cm => {
+      onChange && onChange(cm.getValue())
+    })
     this.cm.setValue(value)
   }
 
   render() {
-    return (
-      <div className="editor" ref={ref => this.editor = ref} />
-    )
+    const { editorPanel } = this.props
+    return editorPanel
+      ? React.cloneElement(editorPanel, { ref: ref => (this.editor = ref) })
+      : <div className="editor" ref={ref => (this.editor = ref)} />
   }
 }
 
